@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preencher Vetor com Dados do Formulário</title>
+</head>
+<body>
+
+<form id="meuForm">
+  <label for="nome">Nome:</label>
+  <input type="text" id="nome" name="nome"><br><br>
+  
+  <label for="idade">Idade:</label>
+  <input type="number" id="idade" name="idade"><br><br>
+  
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email"><br><br>
+  
+  <button type="button" onclick="preencherVetor()">Enviar</button>
+  <button type="button" onclick="listarPessoas()">Enviar</button>
+</form>
+
+<div id="listaPessoas"></div>
+
+<script>
+// Array de objetos
+/*let pessoas = [
+  { nome: 'João', idade: 25, email: 'joao@example.com' },
+  { nome: 'Maria', idade: 30, email: 'maria@example.com' },
+  { nome: 'Pedro', idade: 20, email: 'pedro@example.com' }
+];*/
+
+// Função para listar pessoas
+function listarPessoas() {
+  const listaPessoasDiv = document.getElementById("listaPessoas");
+  listaPessoasDiv.innerHTML = ""; // Limpa o conteúdo anterior
+
+  pessoas.forEach(pessoa => {
+    const pessoaDiv = document.createElement("div");
+    pessoaDiv.textContent = `Nome: ${pessoa.nome}, Idade: ${pessoa.idade}, Email: ${pessoa.email}`;
+    listaPessoasDiv.appendChild(pessoaDiv);
+  });
+}
+
+// Função para preencher vetor com dados do formulário
+function preencherVetor() {
+  let vetor = [];
+
+  // Acessando os valores dos campos do formulário
+  let nome = document.getElementById("nome").value;
+  let idade = document.getElementById("idade").value;
+  let email = document.getElementById("email").value;
+
+  // Encontrando um objeto no array de objetos com o mesmo nome
+  const pessoaEncontrada = pessoas.find(pessoa => pessoa.nome === nome);
+
+  // Se a pessoa for encontrada, preenche o vetor com os dados encontrados
+  if (pessoaEncontrada) {
+    vetor.push(pessoaEncontrada.nome);
+    vetor.push(pessoaEncontrada.idade);
+    vetor.push(pessoaEncontrada.email);
+
+    // Exibindo o vetor preenchido em um elemento div
+    const resultadoDiv = document.createElement('div');
+    resultadoDiv.textContent = "Vetor preenchido: " + vetor.join(", ");
+    
+    // Adiciona o div ao final do formulário
+    document.getElementById('meuForm').appendChild(resultadoDiv);
+  } else {
+    alert("Pessoa não encontrada!");
+  }
+
+  // Atualiza a lista de pessoas
+  listarPessoas();
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Calculadora de Média</title>
+</head>
+
+<body>
+  <h1>Calculadora de Média de Alunos</h1>
+  <form action="/adicionar_aluno" method="GET">
+    <label for="nome">Nome do Aluno:</label>
+    <input type="text" id="nome" name="nome" required><br><br>
+    <label for="nota1">Nota 1:</label>
+    <input type="number" id="nota1" name="nota1" required><br><br>
+    <label for="nota2">Nota 2:</label>
+    <input type="number" id="nota2" name="nota2" required><br><br>
+    <button type="submit" style="display: inline-block;">Adicionar Aluno</button>
+  </form>
+
+  <button onclick="mostrarInformacoesTurma()">Informações da Turma</button>
+  <button onclick="mostrarListaAlunos()">Lista de Alunos</button>
+
+  <div id="turma-info"></div>
+  <ul id="lista-alunos"></ul>
+
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    function mostrarInformacoesTurma() {
+      axios.get('/informacoes_turma')
+        .then(response => {
+          document.getElementById('turma-info').innerHTML = response.data;
+        })
+        .catch(error => {
+          console.error('Erro ao obter informações da turma:', error);
+        });
+    }
+    function mostrarListaAlunos() {
+      axios.get('/lista_alunos')
+        .then(response => {
+          document.getElementById('lista-alunos').innerHTML = response.data;
+        })
+        .catch(error => {
+          console.error('Erro ao obter lista de alunos:', error);
+        });
+    }
+  </script>
+
+</body>
+
+</html>

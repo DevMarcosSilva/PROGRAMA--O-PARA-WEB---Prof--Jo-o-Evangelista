@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preencher Vetor com Dados do Formulário</title>
+</head>
+<body>
+
+<form id="meuForm">
+  <label for="nome">Nome:</label>
+  <input type="text" id="nome" name="nome"><br><br>
+  
+  <label for="idade">Idade:</label>
+  <input type="number" id="idade" name="idade"><br><br>
+  
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email"><br><br>
+  
+  <button type="button" onclick="adicionarAoVetor()">Adicionar ao Vetor</button>
+  <button type="button" onclick="listarValores()">Listar Valores do Vetor</button>
+</form>
+
+<div id="listaPessoas"></div>
+
+<script>
+let vetor = [];
+
+// Função para listar valores do vetor
+function listarValores() {
+  const listaPessoasDiv = document.getElementById("listaPessoas");
+  listaPessoasDiv.innerHTML = ""; // Limpa o conteúdo anterior
+}
+
+// Função para adicionar valores ao vetor
+function adicionarAoVetor() {
+  // Acessando os valores dos campos do formulário
+  let nome = document.getElementById("nome").value;
+  let idade = document.getElementById("idade").value;
+  let email = document.getElementById("email").value;
+
+  // Construindo um objeto com os dados do formulário
+  const pessoa = { nome, idade, email };
+
+  // Adicionando o objeto ao vetor
+  vetor.push(pessoa);
+
+  // Limpando os campos do formulário
+  document.getElementById("nome").value = "";
+  document.getElementById("idade").value = "";
+  document.getElementById("email").value = "";
+
+  alert("Valores adicionados ao vetor!");
+}
+
+</script>
+
+</body>
+</html>

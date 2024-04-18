@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestão de Tarefas Diárias</title>
+    <link rel="stylesheet" href="teste.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gestão de Tarefas Diárias</h1>
+        
+        <div id="adicionar-tarefa-section">
+            <form id="formulario">
+                <input type="text" id="titulo" placeholder="Título da Tarefa" required>
+                <textarea id="descricao" placeholder="Descrição da Tarefa"></textarea>
+                <select id="categoria">
+                    <option value="trabalho">Trabalho</option>
+                    <option value="estudo">Estudo</option>
+                    <option value="pessoal">Pessoal</option>
+                </select>
+                <select id="prioridade">
+                    <option value="baixa">Baixa</option>
+                    <option value="média">Média</option>
+                    <option value="alta">Alta</option>
+                </select>
+                <input type="date" id="dataVcto">
+                <button type="submit" id="adicionar-tarefa">Adicionar Tarefa</button>
+                <button type="submit" id="visualizar-tarefas">Visualizar Tarefas</button>
+            </form>
+        </div>
+        <div id="visualizar-tarefas-section">
+            <label for="categoria-filtro">Filtrar por Categoria:</label>
+            <select id="categoria-filtro">
+                <option value="">Todas</option>
+                <option value="trabalho">Trabalho</option>
+                <option value="estudo">Estudo</option>
+                <option value="pessoal">Pessoal</option>
+            </select>
+            <label for="prioridade-filtro">Filtrar por Prioridade:</label>
+            <select id="prioridade-filtro">
+                <option value="">Todas</option>
+                <option value="baixa">Baixa</option>
+                <option value="média">Média</option>
+                <option value="alta">Alta</option>
+            </select>
+            <button id="buscar-tarefas">Buscar</button>
+            <div id="chave-lista"></div>
+            <button id="retorno-menu">Retornar ao Menu Inicial</button>
+        </div>
+    </div>
+    <script src="teste.js"></script>
+</body>
+</html>

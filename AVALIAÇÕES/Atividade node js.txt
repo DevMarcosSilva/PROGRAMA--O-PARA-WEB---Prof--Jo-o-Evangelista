@@ -1,0 +1,51 @@
+ALUNO: MARCOS VINICIUS GONÇALVES DA SILVA
+
+
+const express = require('express');
+const app = express();
+const path = require('path');
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'public', 'index.html'));
+});
+
+let somaIdade = 0;
+let contador = 0;
+let maiorIdade = 0;
+
+app.get('/somarIdade', (req, res) => {
+    const idade = parseInt(req.query.idade);
+
+    if (!isNaN(idade) && idade > 0) {
+        contador++;
+        somaIdade += idade;
+
+        if (idade > maiorIdade) {
+            maiorIdade = idade;
+        }
+        
+        res.send(`Soma: ${somaIdade}, Idades cadastradas: ${contador}, Maior idade: ${maiorIdade}`);
+    } else {
+        res.status(400).send("Por favor, forneça uma idade válida.");
+    }
+});
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Servidor rodando na porta ${PORT}`));
+
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Idades</title> </head>
+<body>
+<h1>Informe a idade</h1>
+<form action="/somarIdade" method="GET">
+<input type="number" id="idade" name="idade" required placeholder="informe a idade"><br><br>
+<button type="submit">inserir</button>
+</form>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Preencher Vetor com Dados do Formulário</title>
+</head>
+<body>
+
+<form id="meuForm">
+  <label for="nome">Nome:</label>
+  <input type="text" id="nome" name="nome"><br><br>
+  
+  <label for="idade">Idade:</label>
+  <input type="number" id="idade" name="idade"><br><br>
+  
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email"><br><br>
+  
+  <button type="button" onclick="preencherVetor()">Enviar</button>
+</form>
+
+
+
+<script>
+function preencherVetor() {
+  let vetor = [];
+
+  // Acessando os valores dos campos do formulário
+  let nome = document.getElementById("nome").value;
+  let idade = document.getElementById("idade").value;
+  let email = document.getElementById("email").value;
+
+  // Armazenando os valores no vetor
+  vetor.push(nome);
+  vetor.push(idade);
+  vetor.push(email);
+  /*
+  vetor.pop(nome);
+  */
+
+  // Exibindo o vetor preenchido
+  console.log("Vetor preenchido:", vetor);
+}
+</script>
+
+</body>
+</html>
